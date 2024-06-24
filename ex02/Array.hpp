@@ -23,19 +23,24 @@ class Array
 	private:
 
 	T *_array;
+	size_t _size;
 
 	public:
 
-	Array() : _array(NULL) {}
+	Array() : _array(NULL), _size(0) {}
 
-	Array<T>(const unsigned int n)
+	Array(const unsigned int n)
 	{
+		this->_size = n;
 		this->_array = new T[n];
 	}
 
 	Array(const Array &copy)
 	{
-		*this = copy;
+		this->_array = new T[copy.size()];
+		this->_size = copy.size();
+		for (unsigned int i = 0; i < this->_size; i++)
+			this->_array[i] = copy._array[i];
 	}
 
 	~Array()
@@ -43,25 +48,21 @@ class Array
 		delete [] this->_array;
 	}
 
-	template< size_t N>
-	size_t size(T (&)[N]) {return N;}
+	unsigned int size() const {return this->_size;}
 
 	Array& operator=(const Array &change)
 	{
-		size_t size_cur = Array::size(this->_array);
-		size_t size_change = Array::size(change._array);
-		if (size_cur <= size_change)
-		{
-			for (unsigned int i = 0; i < size_cur; i++)
-				this->_array[i] = change->_array[i];
-		}
+		delete [] this->_array;
+		this->_array = new T[change.size()];
+		this->_size = change.size();
+		for (unsigned int i = 0; i < this->_size; i++)
+			this->_array[i] = change._array[i];
 		return (*this);
 	}
 
-	T& operator[](size_t index)
+	T& operator[](unsigned int index)
 	{
-		size_t size = Array::size(this->_array);
-    	if (index >= size)
+    	if (index >= this->_size)
             throw std::out_of_range("Index out of bounds");
         return this->_array[index];
     }
