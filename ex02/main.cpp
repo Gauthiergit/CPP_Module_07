@@ -1,29 +1,17 @@
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/24 12:05:45 by gpeyre            #+#    #+#             */
+/*   Updated: 2024/06/24 12:05:48 by gpeyre           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Array.hpp"
 
-Array::Array<T>() _array(NULL) {}
-
-Array::Array<T>(const unsigned int n)
-{
-	this->_array = new T[n];
-}
-
-Array::Array<T>(const Array &copy)
-{
-	*this = copy;
-}
-
-Array& Array::operator=(const Array &change)
-{
-	for (unsigned int i = 0; i < n; i++)
-		this->_array[i] = change->_array[i];
-	return (*this);
-}
-
-Array::~Array<T>()
-{
-	delete [] this->_array;
-}
 
 #define MAX_VAL 750
 int main(int, char**)
