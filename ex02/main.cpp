@@ -6,16 +6,17 @@
 /*   By: gpeyre <gpeyre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:05:45 by gpeyre            #+#    #+#             */
-/*   Updated: 2024/06/24 12:05:48 by gpeyre           ###   ########.fr       */
+/*   Updated: 2024/06/24 17:53:43 by gpeyre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
 
-#define MAX_VAL 750
+#define MAX_VAL 10
 int main(int, char**)
 {
+	Array<int> empty;
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
@@ -60,6 +61,6 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }
